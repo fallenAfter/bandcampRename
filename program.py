@@ -12,8 +12,6 @@ class Program:
         
 
     def run(self):
-        # run the program
-        print('run')
         self.getDownloadedMusicFromSource()
         
     def getDownloadedMusicFromSource(self):
@@ -36,8 +34,9 @@ class Program:
 
     # returned array indexes should represent: [0]artist [1]album name
     def seperateBandcampNameIntoParts(self, file):
-        result = re.findall(r"((\w|\s)*\w)\s\-\s((\w|\s)*\w)", file.getFileName())
-        return [result[0][0], result[0][2]]
+        # re: bandcamp zip file format [artist name] - [album - name] regex selects words with spaces and digits, but must end with word or digit up to 64 characters for each
+        result = re.search(r"((?:\w|\s|\d){,64}(?:\w|\d))\s\-\s((?:\w|\s|\d){,64}(?:\w|\d))", file.getFileName()).groups()
+        return [result[0], result[1]]
 
 
 Program()
