@@ -1,0 +1,9 @@
+{
+    "test":"hello world",
+    "directories":{
+        "defaultOut":"testout/",
+        "defaultInputFolder": "#bandcamp/",
+        "rootFileLocation": "F:\\Music/",
+        "zipExtractLocation": "unpack/"
+    }
+}

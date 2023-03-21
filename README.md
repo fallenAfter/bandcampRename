@@ -1,2 +1,2 @@
 # bandcampRename
-rebname bandcamp downloads to be better read in windows media plaayer
+Unzip and rename bandcamp files into desired folder
