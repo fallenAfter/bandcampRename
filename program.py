@@ -1,5 +1,6 @@
 from fileHandler import File
 from config import Config
+import re
 class Program:
     def __init__(self):
         self.config = Config().loadConfig()
@@ -25,6 +26,18 @@ class Program:
         
     def unzipBandcampFiles(self, file):
         if file.getExtension() == "zip":
-            file.unzipFile(self.zipExtractLocation)
+            albumSubFolder = self.generatPathForAlbumOutput(file)
+            print(self.zipExtractLocation)
+            file.unzipFile(self.zipExtractLocation+albumSubFolder)
+
+    def generatPathForAlbumOutput(self, file):
+        fileParts = self.seperateBandcampNameIntoParts(file)
+        return fileParts[0]+"/"+fileParts[1]+"/"
+
+    # returned array indexes should represent: [0]artist [1]album name
+    def seperateBandcampNameIntoParts(self, file):
+        result = re.findall(r"((\w|\s)*\w)\s\-\s((\w|\s)*\w)", file.getFileName())
+        return [result[0][0], result[0][2]]
+
 
 Program()
