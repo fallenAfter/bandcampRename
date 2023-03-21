@@ -11,11 +11,6 @@ class File(object):
         if self.isFolder:
             self.mapSubFolders()
             
-        
-        
-
-
-            
     def mapSubFolders(self):
         if self.subFolders == None:
             self.subFolders = []
