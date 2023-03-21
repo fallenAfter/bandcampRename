@@ -20,14 +20,17 @@ class Program:
         # TODO: rename songs to not include artist and album information
         
     def getDownloadedMusicFromSource(self):
+        lineClear = '\x1b[2K'
         # TODO create method for generating process displays
         filesChecked = 0
         unprocessedFilesLocation = File(self.bandcampDlFile)
         # TODO: refactor this to run inside the run() method
         for subfile in unprocessedFilesLocation.subFolders:
             filesChecked= filesChecked +1
-            print("("+str(filesChecked)+"/"+str(len(unprocessedFilesLocation.subFolders))+"): "+subfile.getFileName())
+            print("("+str(filesChecked)+"/"+str(len(unprocessedFilesLocation.subFolders))+"): "+subfile.getFileName(), end='\r')
             self.unzipBandcampFiles(subfile)
+            print(end=lineClear)
+        print('\nDone')
         
     def unzipBandcampFiles(self, file):
         # TODO: move "zip" to a variable, or a dictionary
