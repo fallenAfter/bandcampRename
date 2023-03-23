@@ -40,14 +40,19 @@ class Program:
 
     def generatPathForAlbumOutput(self, file):
         fileParts = self.seperateBandcampNameIntoParts(file)
+        if fileParts == None:
+            return None
         return fileParts[0]+"/"+fileParts[1]+"/"
 
     # returned array indexes should represent: [0]artist [1]album name
     def seperateBandcampNameIntoParts(self, file):
+        output = None
         # re: bandcamp zip file format [artist name] - [album - name] regex selects words with spaces and digits
         # use {,64} instead of ungreedy characters due to possible re performance issues
-        result = re.search(r"((?:\w|\s|\d){,64}(?:\w|\d))\s\-\s((?:\w|\s|\d){,64}(?:\w|\d))", file.getFileName()).groups()
-        return [result[0], result[1]]
+        result = re.search(r"((?:\w|\s|\d){,64}(?:\w|\d))\s\-\s((?:\w|\s|\d){,64}(?:\w|\d))(?:\s\-\s(\d{2}\s)?((?:\w|\s|\d){,64})\.((?:\w|\d){2,4}))?", file.getFileName())
+        if result != None:
+            output = result.groups()
+        return output
 
 
 Program()
