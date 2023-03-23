@@ -4,7 +4,7 @@ import re
 class Program:
     def __init__(self):
         self.config = Config().loadConfig()
-        # TODO: Allow file paaths to be overriden by user input
+        # TODO: Allow file paths to be overriden by user input
         self.rootFileLocation = self.config['directories']['rootFileLocation']
         self.bandcampDlFile = self.rootFileLocation+self.config['directories']['defaultInputFolder']
         self.zipExtractLocation = self.rootFileLocation+self.config['directories']['zipExtractLocation']
