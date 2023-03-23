@@ -1,5 +1,4 @@
 {
-    "test":"hello world",
     "directories":{
         "defaultOut":"testout/",
         "defaultInputFolder": "#bandcamp/",
